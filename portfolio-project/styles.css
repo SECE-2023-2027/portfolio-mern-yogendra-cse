@@ -1,0 +1,47 @@
+#content {
+    padding: 20px;
+}
+
+.view-btn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.view-btn:hover {
+    background-color: #0056b3;
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.modal-content img {
+    max-width: 90%; /* Limit the width to 90% of the modal */
+    max-height: 90vh; /* Limit the height to 80% of the viewport height */
+    margin-bottom: 10px;
+    width: 800px;
+    border-radius: 8px; /* Optional: Add some styling for aesthetics */
+    object-fit: contain; /* Ensure the image scales proportionally */
+}
+

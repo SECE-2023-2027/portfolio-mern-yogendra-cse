@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-family:'Poppins',sans-serif;
+            box-sizing: border-box;
+        }
+        body{
+            background-color: #080808;
+            color:white;
+        }
+        #header{
+            width: 100%;
+        height: 100vh;
+        background-image: url(images/background2.png);
+        background-size: cover;
+        background-position: center;
+        }
+        .container{
+            padding: 10px 10%;
+        }
+        nav{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .logo{
+            width: 140px;
+        }
+        nav ul li{
+            display: inline-block;
+            list-style: none;
+            margin: 10px 20px;
+        }
+        nav ul li a{
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            position: relative;
+        }
+        nav ul li a::after{
+            content:'';
+            width: 0;
+            height: 3px;
+            background-color: red;
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+
+            transition: 0.5s ;
+        }
+        nav ul li a:hover::after{
+            width: 100%;
+        }
+        .header-text{
+            
+            margin-top: 20%;
+            font-size: 30px;
+        }
+        .header-text h1{
+            font-size: 60px;
+            margin-top: 20px;
+        }
+        .header-text h1 span{
+            color: rgb(255, 4, 4);
+        }
+        /*--------about------*/
+        #about{
+            padding: 80px 0;
+            color: white;
+        }
+        .row{
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+        .about-col-1{
+            flex-basis: 45%;
+            /*this will make the flexed container to occupy first 35% of the original flex applied container*/
+        }
+        .about-col-1 img{
+            width: 100%;
+            border-radius: 15px;
+            
+        
+        }
+        .about-col-2{
+            flex-basis: 45%;
+            /*this will make the flexed container to occupy first 35% of the original flex applied container*/
+        }
+        .about-col-2 h1{/*subtitle*/
+            font-size: 60px;
+            font-weight: 800;
+            color: rgb(235, 240, 244);
+         }
+         .about-col-2 p{
+            line-height:1.6;
+            font-size: 18px;
+        }
+        
+         .tab-titles{
+            display: flex;
+            margin: 20px 0 40px;
+            
+         }
+         .tab-links{
+            margin-right:18px;
+            cursor: pointer;
+            font-weight: 500;
+            position: relative;
+            font-size: 27px;
+         }
+         .tab-links::after{
+            content: '';
+            width: 0;
+            height: 3px;
+            background: #ff004f;
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            transition: 0.5s;
+         }
+         .tab-links.active-link::after{
+            width: 50%;
+         }
+         .tab-contents ul li{
+            list-style: none;
+            margin: 10px 0;
+         }
+         .tab-contents ul li span{
+            color: rgb(169, 40, 40);
+            font-size: 15px;  
+         }
+         .tab-contents{
+            display: none;
+         }
+         .tab-contents.active-tab{
+            display: block;
+         }
+
+         .sub-title h1{
+            font-size: 50px;
+         }
+         
+         #services{
+            padding: 30px 0;
+            
+         }
+         .services-list{
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); 
+                        grid-gap: 40px;
+            margin-top: 50px;
+         }
+         .services-list div{
+            background-color: #262626;
+            padding: 40px;
+            font-size: 13px;
+            font-weight: 300;
+            border-radius: 10px;
+            transition: background 0.5s,transform 0.5s;
+        }
+         .services-list div i{
+            font-size: 50px;
+            margin-bottom: 20px;
+         }
+         .services-list div h2{
+            font-size: 28px;
+            font-weight: 500;
+            margin-bottom: 18px;
+         }
+         .services-list div pre{
+            font-size: 30px;
+            font-weight: 500;
+            margin-bottom: 18px;
+         }
+         .services-list div a{
+            text-decoration: none;
+            color: #ffff;
+            font-size: 14px;
+            margin-top: 18px;
+            display: inline-block;
+         }
+         .services-list div:hover {
+            background-color: #ff004f;
+            box-shadow: -10px 10px 15px rgba(252, 187, 187, 0.3); /* Shadow on left and bottom */
+            transform: translateY(-10px);
+            transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition */
+        }
+        /*certificates*/
+        #certificates{
+         padding: 50px 0;
+        }
+        .certificate-list{
+            display: grid;
+            grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+            grid-gap: 40px;
+            margin-top: 50px;
+        }
+        .certificate{
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+        .certificate img{
+            width: 100%;
+            border-radius: 10px;
+            display: block;
+            transition: transform 0.5s ease; /* Smooth zoom effect */
+        }
+        .certificate:hover img {
+            transform: scale(1.2); /* Zoom the image by 1.2 times */
+        }
+        .layer{
+            width: 100%;
+            height: 0;
+            background: linear-gradient(rgba(0,0,0,0.6),#ff004f);
+            border-radius: 10px;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 0 40px;
+            text-align: center;
+            font-size: 15px;
+            transition: height 0.5s;
+        }
+        .layer h3{
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+        .layer a{
+            margin-top: 20px;
+            color: #ff004f;
+            text-decoration: none;
+            font-size: 18px;
+            background: #fff;
+            line-height: 60px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50px;
+            text-align: center;
+        }
+        .certificate:hover .layer{
+            height: 100%;
+        }
+        .btn{
+            display: block;
+            text-decoration: none;
+            background-color: #080808;
+            color: #fff;
+            width: fit-content;
+            border: 1px solid white;
+            font-size: 15px;
+            font-weight: 100;
+            padding: 10px 30px;
+            border-radius: 6px;
+            margin:  50px auto;
+            transition: background 0.5s;
+        }
+        .btn:hover{
+background-color: #ff004f;
+        }
+        .soc-icons{
+            display: flex;
+            margin-top: 32px;
+            gap:       30px;
+            
+
+        }
+        .soc-icons i{
+            font-size: 32px;
+            border-radius: 10px;
+         transition: background 0.5s,transform 0.5s;
+
+        }
+        .soc-icons i:hover{
+            color: #ff004f;
+            transform: translateY(-5px);
+
+        }
+        .contact-left{
+            
+            flex-basis: 35%;
+        }
+        .contact-left p{
+            margin-top: 40px;
+        }
+        .contact-left p i{
+            color: red; 
+            margin-right: 15px;
+        }
+        .contact-right{
+            flex-basis: 60%;
+        }
+        .btn1{
+            display: block;
+            text-decoration: none;
+            background-color: #080808;
+            color: #fff;
+            width: fit-content;
+            border: 1px solid white;
+            font-size: 15px;
+            font-weight: 100;
+            padding: 10px 30px;
+            border-radius: 6px;
+            margin:  50px auto;
+            transition: background 0.5s;
+        }
+        .btn1 i{
+            margin-left: 2px;
+            color:rgb(169, 40, 40)
+        }
+        .btn1:hover{
+        background-color: #ff004f;
+        }
+        .btn1:hover i{
+            color: white
+        }
+        .contact-right form{
+            width: 100%;
+            
+        }
+        form input,form textarea{
+            width: 100%;
+            border: 0;
+            outline: none;
+            background: #262626;
+            padding: 15px;
+            margin: 15px 0;
+            color: #fff;
+            font-size: 16.5px;
+            border-radius: 6px;
+        }
+        form .btn2{
+            padding: 12px 50px;
+            font-size: 18px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+      /*  .contact-right form input{
+            padding: 5px 100px;
+            background-color: rgb(86, 76, 76);
+
+            border-radius: 10px;
+        }
+        .contact-right form input::placeholder{
+    font-size: 12px;
+        color: rgb(224, 211, 211);            
+        }
+        .contact-right form textarea::placeholder{
+            font-size: 12px;
+            color: rgb(224, 211, 211);            
+                    }
+        .contact-right form textarea{
+            padding: 5px 100px;
+            background-color: rgb(86, 76, 76);
+            border-radius: 10px;
+        }*/
+        .copyright{
+            width: 100%;
+            text-align: center;
+            padding: 25px 0;
+            background: #262626;
+            font-weight: 300;
+        }
+
+        nav ul .fa-solid{
+            display: none;
+        }
+        nav .fa-solid{
+            display: none;
+        }
+        /*button click styling*/
+        
+        button:active{
+            opacity: 0.4;
+        }
+        
+/*--responsiveness--*/
+        /*css for small devices*/
+        @media only screen and (max-width: 600px){
+            #header{
+                background-image: url(images/phone-background.png);
+            }
+            .header-text {
+                width: 80%;
+                margin-left: -22px;
+                margin-top: 100%;
+                font-size: 14px;
+            }
+            .header-text h1{
+                font-size: 30px;
+            }
+            nav ul .fa-solid{
+                display: block;
+                font-size: 25px;
+                
+            }
+            nav .fa-solid{
+                display: block;
+                font-size: 25px;
+            }
+            nav ul {
+                background: #ff004f;
+                position: fixed;
+
+                top: 0;
+                right: -200px;
+                width: 200px;
+                
+                height: 100vh;
+                padding: 50px;
+                z-index: 2;
+                transition: right 0.5s;
+            }
+            nav ul li{
+                display: block;
+                margin: 25px;
+            }
+            nav ul .fa-solid { /*design for X button*/
+                position: absolute;
+                top: 25px;
+                left: 55px;
+                cursor: pointer;
+            }
+            .sub-title h1{
+            font-size: 40px;
+             }
+             .about-col-1,.about-col-2{
+                flex-basis: 100%;
+             }
+             .about-col-1{
+                margin-bottom: 20px;
+             }
+             .about-col-2 p{
+                font-size: 14px;
+             }
+             .tab-links {
+                font-size: 16px;
+                margin-right:20px;;
+             }
+             .contact-left,.contact-right{
+                flex-basis: 100%;
+             }
+             .copyright{
+                font-size:14px;
+             }
+
+            }
+            #msg{
+                color: #b38527;
+                margin-top: -40px;
+                display: block;
+            }
+
+
+
+   
+        
+        </style>
+        <script src="https://kit.fontawesome.com/7c78c8a2b3.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+
+<div id="header">
+    <div class="container">
+        <nav>
+            <img src="images/logo1.png" class="logo">
+            <ul id="sidemenu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About me</a></li>
+                <li><a href="#services">Projects</a></li>
+                <li><a href="#certificates">Certificates</a></li>
+                <li><a href="#contact">Contact Me</a></li>
+                <i class="fa-solid fa-circle-xmark" onclick="closeMenu()"></i>
+            </ul>
+            <i class="fa-solid fa-bars" onclick="openMenu()"></i>
+
+        </nav>
+        <div class="header-text">
+            <p>Passionate Engineering student</p>
+            <h1>Hi I'm <span>yogendra</span>,<br>ML enthusiast</h1>
+        </div>
+        
+    </div>
+</div>
+<!-- ABout section -->
+            <div id="about">
+                <div class="container">
+                    <div class="row">
+                        <div class="about-col-1">
+                            <img src="images/myIng4.jpg" alt="">
+                        </div>
+                        <div class="about-col-2">
+                            <div class="sub-title">
+                                <h1>About Me</h1>
+                            </div>
+                            <p>
+                                I am a passionate Computer Science Engineering (CSE) student at Sri Eshwar College of Engineering, with a CGPA of 7.8 (till 2nd semester) and a strong inclination towards software development, problem-solving, and web development. With hands-on experience in programming, I enjoy building innovative projects and continuously enhancing my skills. I am also adapt at teamwork and have participated in hackathons, showcasing creativity and technical expertise.
+                            </p>
+                        
+                            <div class="tab-titles">
+                                <pre class="tab-links active-link" onclick="opentab('skills',event)">Skills</pre>
+                                <pre class="tab-links" onclick="opentab('techstack',event)">TechStack</pre>
+                                <pre class="tab-links" onclick="opentab('education',event)">Education</pre>
+                            </div>
+                        
+                            <div class="tab-contents active-tab" id="skills">
+                                <ul>
+                                    <li><span>C | C++</span><br>Proficient in solving programming problems and implementing algorithms.</li>
+                                    <li><span>HTML | CSS | JS</span><br>Built responsive websites as well as interactive with engaging designs.</li>
+                                    <li><span>Python</span><br>Developed projects like a Stack Overflow auto-search tool using Python and Tkinter.</li>
+                                    <li><span>Data Structures & Algorithms (DSA)</span><br>Beginner-level proficiency with a focus on problem-solving on platforms like LeetCode and Skillrack.</li>
+                                    <li><span>Java</span><br>Beginner-level understanding of Java programming and building interactive applications with JavaFX.</li>
+                                    <!-- <li><span>DBMS</span><br>Learnt about efficient data management with integrity, security, and consistency through ACID properties and normalization.</li> -->
+
+                                </ul>
+                            </div>
+                        
+                            <div class="tab-contents" id="techstack">
+                                <ul>
+                                    <li><span>Development Tools</span><br>VSCode, PyCharm, DevC++, Jupyter Notebook.</li>
+                                    <li><span>Web Development</span><br>HTML, CSS, JavaScript.</li>
+                                    <li><span>Programming Languages</span><br>C, Python.</li>
+                                    <li><span>Networking</span><br>Socket programming in C (Client-Server Chat Application).</li>
+                                </ul>
+                            </div>
+                        
+                            <div class="tab-contents" id="education">
+                                <ul>
+                                    <li><span>B.E (CSE)</span><br>Sri Eshwar College of Engineering | CGPA: 7.8 (till 2nd semester) | 2023-2027.</li>
+                                    <li><span>HSC</span><br>Thiagarajar Model Higher Secondary School | 92.5% | 2021-2023.</li>
+                                    <li><span>SSLC</span><br>Chandler Matric Higher Secondary School | Passed all subjects | 2020-2021.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    
+
+                       
+                        <!-- <div class="desctiption"></div> -->
+                    </div>
+                </div>
+            </div>
+<!-- service -->
+ <div id="services">
+    <div class="container">
+        <div class="sub-title"><h1>My Projects</h1></div>
+        <div class="services-list">
+
+
+
+               <div>
+                    <i class="fa-brands fa-searchengin"></i>
+                    <h2>Auto Search Tool</h2>
+                    <p style="font-size: 15px; line-height: 18px;">
+                        The Auto Search Tool simplifies error resolution by running Python code and fetching solutions from Stack Overflow for any errors. It features a user-friendly Tkinter interface for seamless execution and troubleshooting.
+                    </p>
+                    <a href="https://github.com/SECE-2023-2027/sample-project-expert-example-yogendra-cse/blob/main/23cs195_STACK%20OVERFLOW%20AUTO%20SEARCH%20TOOL.py" target="_blank">Know more</a>
+                </div>
+                <!-- Card 2 -->
+                <div>
+                    <i class="fa-solid fa-code"></i>
+                    <h2>BootStrap Blog Website</h2>
+                    <p style="font-size: 15px; line-height: 18px;">
+                        A responsive blog website built with Bootstrap 5, featuring a dark-themed header, a grid of blog posts with images, and a contact form. Includes a footer with useful links for easy navigation.
+                    </p>
+                    <a href="file:///D:/yogendra_I/mylearnweb_yogendra/boots_prac/annajvlblog.html" target="_blank">Know more</a>
+                </div>
+                <!-- Card 3 -->
+                <div>
+                    <i class="fa-solid fa-utensils"></i>
+                    <h2>Menu Recommendation</h2>
+                    <p style="font-size: 15px; line-height: 18px;">
+                        A simple responsive blog using Bootstrap 5 featuring a header, posts section, contact form, and footer for easy navigation and interaction.
+                    </p>
+                    <a href="https://drive.google.com/drive/home" target="_blank">Know more</a>
+                </div>
+                <!-- Card 4 -->
+                <div>
+                    <i class="fa-brands fa-searchengin"></i>
+                    <h2>Job Recommendation System</h2>
+                    <p style="font-size: 15px; line-height: 18px;">
+                        A Java-based system that matches candidates with job openings based on skills, experience, and preferences. Built with JDBC and SQL integration.
+                    </p>
+                    <a href="https://drive.google.com/drive/home" target="_blank">Know more</a>
+                </div>
+                <!-- Card 5 -->
+                <div>
+                    <i class="fa-solid fa-code"></i>
+                    <h2>Banking Services Project</h2>
+                    <p style="font-size: 15px; line-height: 18px;">
+                        A responsive system with multiple features for handling banking operations using Java and SQL integration. Built with a modern interface.
+                    </p>
+                    <a href="https://drive.google.com/drive/home" target="_blank">Know more</a>
+                </div>
+               
+
+        </div>
+      
+    </div>
+    </div>
+ 
+<!--  -->
+
+
+<!--  -->
+
+ <div id="certificates">
+    <div class="container">
+        <div class="sub-title"><h1>My Certificates</h1></div>
+        <div class="certificate-list">
+            <div class="certificate">
+                <img width="287.2px" height="100%" src="images/Ccertificate_banner.jpg" alt="">
+                <div class="layer">
+                    <h3>C Programming</h3>
+                    <p title="click to view certificate">Mastering with 6 exiting projects</p>
+                    <a class="viewCertificate"    data-image="images/Ccertificate.jpeg"><i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+                
+            </div>
+            <div class="certificate">
+                <img src="images/work-2.png" alt="">
+                <div class="layer">
+                    <h3>DSA</h3>
+                    <p title="click to view certificate">Mastering Data Structures & Algorithms using C and C++</p>
+                    <a class="viewCertificate"    data-image="images/DSACertificate.jpg"><i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="certificate">
+                <img src="images/work-3.png" alt="">
+                <div class="layer">
+                    <h3>Java Language</h3>
+                    <p>Learn JAVA Programming - Beginner to Master</p>
+                    <a class="viewCertificate"    data-image="images/JavaCertificate.jpg"><i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+        <a href="#" class="btn">See more</a>
+    </div>
+ </div>
+ 
+<!-- ----------contact form -->
+
+<div id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="contact-left">
+                <div class="sub-title"><h1>Contact Me</h1></div>
+                <p><i class="fa-solid fa-paper-plane"></i>yogendra.n2023cse@sece.ac.in</p>
+                <p><i class="fa-solid fa-phone"></i>63699-85284</p>
+                <div class="soc-icons">
+                    <i class="fa-brands fa-facebook"></i>
+                    <i class="fa-brands fa-square-github"></i>
+                    <i class="fa-brands fa-square-instagram"></i>
+                    <i class="fa-brands fa-linkedin"></i>
+                </div>
+                <a href="images/my-cv.pdf" download target="_blank" style="text-decoration: none;"><button class="btn1">Download Resume <i class="fa-regular fa-file"></i></button></a>
+            </div>
+            
+            <div class="contact-right">
+                <form name="submit-to-google-sheet">
+                    <input type="text" name="Name" placeholder="Enter your name" required> 
+                
+                    <input type="email" name="Email" placeholder="Enter your email" required>
+                
+                    
+                <textarea name="Message" rows="6" placeholder="Enter your message"></textarea>
+                    <button type="submit" class="btn btn2">Submit</button></a>
+                </form>
+                <span id="msg"></span>
+            </div>
+        </div>
+       
+    </div>
+    <div class="copyright">
+        <p>&copy; 2025 N. Yogendra. All Rights Reserved. </p>
+    </div>
+</div>
+
+
+
+
+            <div id="certificateModal" class="modal">
+                <div class="modal-content">
+                    <img src="" width="25%" >
+                </div>
+            </div>
+
+
+
+
+            <script>
+                var tablinks = document.getElementsByClassName("tab-links");
+                var tabcontents = document.getElementsByClassName("tab-contents");
+                function opentab(tabName,event){
+                     for(var tablink of tablinks){
+                        tablink.classList.remove("active-link");
+                     }
+                     for(var tabcontent of tabcontents){
+                        tabcontent.classList.remove("active-tab");
+                     }
+                    //removal when click
+                    event.currentTarget.classList.add("active-link");
+                    document.getElementById(tabName).classList.add("active-tab");
+                }
+                
+            </script>
+
+            <script>
+                var sidemenu = document.getElementById("sidemenu");
+                function openMenu(){
+                    sidemenu.style.right = "0";
+                }
+                function closeMenu(){
+                    sidemenu.style.right = "-200px";
+
+                }
+            </script>
+            <form name="submit-to-google-sheet">
+               
+              </form>
+              
+              <script>
+                const scriptURL = 'https://script.google.com/macros/s/AKfycbxBzez6cAKg4mpk3Xoo9VxkWZUWLC6S2DaTWWSeec6tIIWvG4YIFz2Fk8cMrsZqUQaMog/exec'
+                const form = document.forms['submit-to-google-sheet']
+                const msg = document.getElementById("msg")
+                 
+                form.addEventListener('submit', e => {
+                    e.preventDefault();
+                    fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                        .then(response => {
+                            msg.innerHTML = "Message sent successfully!";
+                            setTimeout(() => (msg.innerHTML = ""), 5000);
+                            form.reset();
+                        })
+                        .catch(error => {
+                            msg.innerHTML = "Error occurred. Please try again.";
+                        });
+                });
+                
+              </script>
+
+              <script>
+                const certificateLinks = document.querySelectorAll('.viewCertificate');
+                const modal = document.getElementById('certificateModal');
+                const modalContent = document.querySelector('.modal-content img'); // Assuming there's an image tag in the modal
+
+                certificateLinks.forEach(link => {
+                    link.addEventListener('click', function () {
+                        const imagePath = this.getAttribute('data-image'); // Get the image path from the data-image attribute
+                        modalContent.src = imagePath; // Update the modal image
+                        modal.style.display = 'flex'; // Show modal
+                        document.body.style.overflow = 'hidden'; // Prevent scrolling
+                    });
+                });
+
+                window.addEventListener('click', function (event) {
+                    if (event.target === modal) {
+                        modal.style.display = 'none'; // Hide modal
+                        document.body.style.overflow = ''; // Re-enable scrolling
+                    }
+                });
+
+              </script>
+</body>
+</html>
